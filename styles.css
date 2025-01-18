@@ -1,0 +1,663 @@
+body {
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#app {
+    padding: 20px;
+    overflow-y: auto; /* Enable vertical scrolling within the app */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #trackerTable th, #trackerTable td {
+        padding: 6px;
+        font-size: 0.9em;
+    }
+
+    .emoji-btn, .habit-btn, .mood-btn {
+        padding: 6px 12px;
+        font-size: 1em;
+    }
+
+    #generalMenuScreen, #loggingScreen, #symptomsScreen, #moodMenuScreen {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    #generalMenuScreen, #loggingScreen, #symptomsScreen, #moodMenuScreen {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    #generalMenuScreen h2, #loggingScreen h2, #symptomsScreen h2, #moodMenuScreen h2 {
+        font-size: 1.2em;
+    }
+
+    #generalMenuScreen .menu-section, #loggingScreen label, #symptomsScreen label, #moodMenuScreen .mood-category h3 {
+        font-size: 1em;
+    }
+}
+
+/* ------------------------- Cycle Start Prompt ------------------------- */
+#cycleStartPrompt {
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+
+    text-align: center;
+    margin-top: 20px;
+}
+
+    #cycleStartDate {
+        font-family: 'Nunito', 'Open Sans', sans-serif;
+        font-size: 1.6rem; /* Make the date input larger */
+        padding: 10px; /* Add some padding for better touch/click area */
+        border-radius: 5px;
+        border: 1px solid #ccc; /*Optional*/
+    }
+
+
+    #startTracking {
+        font-family: 'Nunito', 'Open Sans', sans-serif;
+        font-size: 1.6rem; /* Make the button larger */
+        padding: 12px 20px; /* Adjust padding as needed */
+        border-radius: 5px;
+        background-color: #008CBA; /* Example color */
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Add a smooth transition */
+    }
+
+/* ------------------------- Tracker Table ------------------------- */
+
+/* Add container for horizontal scrolling */
+#trackerContainer {
+    overflow-x: auto;
+    position: relative;
+}
+
+#trackerTable {
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Moved margin here */
+    cursor: pointer; /* Allows pointer to change when interacting with table */
+    border-spacing: 1px;
+    border-collapse: separate; 
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px lightblue;
+}
+
+#trackerTable td {
+border-radius: 5px
+}
+
+/* Make first column sticky */
+#trackerTable td:first-child,
+#trackerTable th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: #86BBD8; /* Match existing header color */
+}
+
+#trackerTable #headerRow th.current-day { 
+    background-color: #A0EFFA; 
+} 
+    #trackerTable th, #trackerTable td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center; /* Center content (including emojis) */
+    }
+
+    #trackerTable #headerRow th, 
+    #trackerTable #weekRow td, 
+    #trackerTable td:first-child, 
+    #trackerTable th:first-child {
+        font-weight: bold;
+        background-color: #86BBD8; 
+        box-shadow: 2px 2px 5px lightblue;
+
+    }
+
+    #trackerTable #cycleRow td  {
+        background-color: #F08080;
+        font-weight: bold;
+    }
+
+
+    #trackerTable tr[data-type="notes"] td, #trackerTable tr[data-type="calories"] td { 
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    } /* Allows enter breaks to be shown on the cell*/
+
+
+tr[data-type="individual-symptom"] td:first-child {
+    font-size: 0.9em;
+    background-color: #f8f8f8;
+    font-weight: normal;
+}
+
+tr[data-type="individual-symptom"] td {
+    transition: background-color 0.3s ease;
+}
+
+tr[data-type="individual-symptom"] td:hover {
+    opacity: 0.8;
+}
+
+/* ------------------------- Logging Screen ------------------------- */
+
+#loggingScreen {
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 30px;
+}
+
+    #loggingScreen h2 {
+        margin-top: 0;
+    }
+
+    #loggingScreen label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+
+    #loggingScreen select, #loggingScreen input, #loggingScreen textarea {
+        width: 95%;
+        padding: 8px;
+        margin: 5px 05x;
+        display: flex;
+        justify-content:flex-start
+    }
+
+    #loggingScreen button {
+        padding: 10px 15px;
+        margin-top: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #saveLog {
+        background-color: #28a745;
+        color: white;
+        border-radius: 20px;
+
+    }
+
+    #closeLog {
+        background-color: #dc3545;
+        color: white;
+        border-radius: 20px;
+
+    }
+
+/* ------------------------- SYMPTOM SCREEN ------------------------- */
+#symptomsScreen {
+    font-family: 'Nunito', 'Open Sans', sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 30px;
+    z-index: 20; /* Same level as mood menu */
+}
+
+    #symptomsScreen h2 {
+    margin-top: 0;
+    }
+
+    #symptomScreen label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    #symptomsScreen p#selectedDay {
+        margin-bottom: 10px; 
+        display: block; 
+        text-align: left; /* Center the date text horizontally */
+        width: 100%; /* Make the date span the full width of the container*/
+    }
+    
+    /* Symptom List */
+
+    #symptomsList {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        gap: 2px; 
+        clear: both; /* This will clear any floating elements before the symptomsList */
+      }
+
+    #symptomsList .symptom-item {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none; /* Prevent text selection on click */
+    }
+
+    
+            /* Adjust buttons on hover (optional) */
+        .symptom-item:hover {
+            box-shadow: 5px 5px 5px lightblue;
+
+        }
+
+        .symptom-item {
+            /* Default styling */
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin: 2px;
+            cursor: pointer; /* Make it clear it's clickable */
+            border-radius: 50px;
+
+        }
+    
+        .symptom-item.mild {
+            background-color: #9EE09E;
+        }
+        
+        .symptom-item.moderate {
+            background-color: #FEB144;
+        }
+        
+        .symptom-item.severe {
+            background-color: #FF6663;
+        
+        }
+
+
+    #saveSymptomsBtn { 
+        padding: 10px 15px;
+        margin-top: 10px;
+        cursor: pointer;
+        background-color: #28a745;
+        border: none;
+        color:white;
+        border-radius: 20px;
+
+    }
+    
+    #closeSymptomBtn { 
+        padding: 10px 15px;
+        margin-top: 10px;
+        cursor: pointer;
+        background-color: #dc3545;
+        border: none;
+
+        color: white;
+        border-radius: 20px;
+
+    }
+    
+    
+    
+
+/* ------------------------- BUTTONS ------------------------- */
+
+#buttonContainer button {
+    padding: 10px 15px;
+    margin-top: 15px; /* Add space below 
+    padding: 10px 15px; /* size of button*/
+    font-size: 20px; /* Make the text readable */
+    border: none; /* Optional: border for aesthetics */
+    background-color: #e7e7e7; /* Optional: light background */
+    cursor: pointer; /* Pointer cursor for hover */
+    border-radius: 6px; /* Slight rounding for better look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for depth */
+}
+
+    /* Adjust buttons on hover (optional) */
+    #buttonContainer button:hover {
+        box-shadow: 5px 5px 5px lightblue;
+
+    }
+
+
+/* ------------------------- Mood Menu ------------------------- */
+
+#moodMenuScreen {
+font-family: 'Nunito', 'Open Sans', sans-serif;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: white;
+color: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+z-index: 20;
+max-height: 80vh;
+overflow-y: auto;
+}
+
+.mood-category {
+margin-bottom: 20px;
+}
+
+.mood-category h3 {
+margin-bottom: 10px;
+color: #333;
+}
+
+.mood-options {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+gap: 10px;
+}
+
+.mood-btn {
+padding: 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 1.1em;
+transition: background-color 0.2s;
+}
+
+.mood-btn:hover {
+box-shadow: 5px 5px 5px lightblue;
+
+}
+
+#closeMoodMenu {
+margin-top: 20px;
+padding: 10px 20px;
+background: #dc3545;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+/* ------------------------- General Menu ------------------------- */
+
+#generalMenuScreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.menu-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.habit-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.habit-btn {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* ------------------------- Tracking Group ------------------------- */
+
+.tracking-group {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.tracking-group h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.emoji-options {
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.emoji-btn {
+    padding: 8px 16px;
+    font-size: 1.2em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.emoji-btn:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.emoji-btn.selected {
+    background: #86BBD8;
+    border-color: #86BBD8;
+}
+
+.clickable {
+    cursor: pointer !important;
+    user-select: none;
+}
+
+/* Remove clickability from non-header cells */
+#trackerTable td {
+    cursor: default !important;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.dark-mode #trackerTable {
+    box-shadow: 5px 5px 5px #3a3a3a;
+}
+
+body.dark-mode #trackerTable th,
+body.dark-mode #trackerTable td {
+    border-color: #3a3a3a;
+}
+
+body.dark-mode #trackerTable #headerRow th, 
+body.dark-mode #trackerTable #weekRow td, 
+body.dark-mode #trackerTable td:first-child, 
+body.dark-mode #trackerTable th:first-child {
+    background-color: #2c3e50;
+    box-shadow: 2px 2px 5px #3a3a3a;
+}
+
+body.dark-mode #trackerTable #cycleRow td {
+    background-color: #c0392b;
+}
+
+body.dark-mode #trackerTable #headerRow th.current-day { 
+    background-color: #a0effa92; 
+} 
+
+body.dark-mode .menu-section,
+body.dark-mode #generalMenuScreen,
+body.dark-mode #symptomsScreen,
+body.dark-mode #moodMenuScreen,
+body.dark-mode #loggingScreen {
+    background-color: #2d2d2d;
+    border-color: #3a3a3a;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border-color: #4a4a4a;
+}
+
+body.dark-mode .emoji-btn,
+body.dark-mode .habit-btn,
+body.dark-mode .mood-btn {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #ffffff;
+}
+
+body.dark-mode .emoji-btn:hover,
+body.dark-mode .habit-btn:hover,
+body.dark-mode .mood-btn:hover {
+    background-color: #4a4a4a;
+}
+
+body.dark-mode .emoji-btn.selected,
+body.dark-mode .habit-btn.selected {
+    background-color: #34495e;
+}
+
+body.dark-mode tr[data-type="individual-symptom"] td:first-child {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+/* Keep symptom severity colors but slightly darker for dark mode */
+body.dark-mode .symptom-item.mild {
+    background-color: #7bc47b;
+}
+
+body.dark-mode .symptom-item.moderate {
+    background-color: #d49434;
+}
+
+body.dark-mode .symptom-item.severe {
+    background-color: #d45453;
+}
+
+/* Dark mode button style */
+#darkModeToggle {
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+}
+
+body.dark-mode #darkModeToggle {
+    transform: rotate(180deg);
+}
+
+/* Update emoji and habit button styles */
+.emoji-btn, .habit-btn, .mood-btn {
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.emoji-btn:hover, .habit-btn:hover, .mood-btn:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    background-color: transparent;
+}
+
+.emoji-btn.selected, .habit-btn.selected, .mood-btn.selected {
+    background-color: transparent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    border-color: #86BBD8;
+}
+
+/* Update tracker table cell styles */
+#trackerTable td[data-habit], #trackerTable td[data-mood-time] {
+    background-color: transparent !important;
+}
+
+/* Dark mode updates */
+body.dark-mode .emoji-btn, 
+body.dark-mode .habit-btn,
+body.dark-mode .mood-btn {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #4a4a4a;
+}
+
+body.dark-mode .emoji-btn:hover,
+body.dark-mode .habit-btn:hover,
+body.dark-mode .mood-btn:hover {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+}
+
+body.dark-mode .emoji-btn.selected,
+body.dark-mode .habit-btn.selected,
+body.dark-mode .mood-btn.selected {
+    background-color: transparent;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    border-color: #34495e;
+}
+
+/* Change headings color to white in dark mode */
+body.dark-mode .tracking-group h4,
+body.dark-mode .mood-category h3 {
+    color: #ffffff;
+}
+
+#saveGeneralMenu, #closeGeneralMenu {
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 20px;
+}
+
+#saveGeneralMenu {
+    background-color: #28a745;
+}
+
+#closeGeneralMenu {
+    background-color: #dc3545;
+}
+
+/* Dark mode support for sticky column */
+body.dark-mode #trackerTable td:first-child,
+body.dark-mode #trackerTable th:first-child {
+    background-color: #2c3e50; /* Match existing dark mode header color */
+}
+
+
