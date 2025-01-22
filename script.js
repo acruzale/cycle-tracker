@@ -561,7 +561,7 @@ document.querySelectorAll(".mood-btn").forEach(btn => {
     btn.parentNode.replaceChild(newBtn, btn);
     newBtn.addEventListener("click", function() {
         // Extract just the emoji using a more precise method
-        const emoji = this.textContent.match(/^[\u{1F300}-\u{1F9FF}]|[\u{1F600}-\u{1F64F}]/u)[0];
+        const emoji = this.textContent.match(/[\p{Emoji}]/u)[0];
         const moodTime = moodMenuScreen.dataset.moodTime;
         const columnIndex = parseInt(moodMenuScreen.dataset.columnIndex);
         
@@ -777,7 +777,7 @@ closeMoodMenuBtn.addEventListener("click", () => {
 // Update mood button click handlers
 document.querySelectorAll(".mood-btn").forEach(btn => {
     btn.addEventListener("click", function() {
-        const emoji = this.textContent.match(/^[\u{1F300}-\u{1F9FF}]|[\u{1F600}-\u{1F64F}]/u)[0];
+        const emoji = this.textContent.match(/[\p{Emoji}]/u)[0];
         const moodTime = moodMenuScreen.dataset.moodTime;
         const dayIndex = parseInt(moodMenuScreen.dataset.dayIndex);
 
